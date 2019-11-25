@@ -651,8 +651,10 @@ public class PlayReader {
             }
             parameter.setName(p.name());
             List<Annotation> annotations = getParamAnnotations(cls, method, p.typeName(), fieldPosition);
-            ParameterProcessor.applyAnnotations(getSwagger(), parameter, type, annotations);
+            parameter = ParameterProcessor.applyAnnotations(getSwagger(), parameter, type, annotations);
+            if(parameter != null){
             parameters.add(parameter);
+            }
             fieldPosition++;
         }
         return parameters;
